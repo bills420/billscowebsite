@@ -31,6 +31,15 @@ const ContactForm = () => {
     }
   };
 
+  const handleButtonClick = () => {
+    setStatus('sending');
+    // Simulate sending delay
+    setTimeout(() => {
+      window.location.href = `mailto:info@billsco.co.nz`;
+      setStatus('');
+    }, 1000); // Delay in milliseconds
+  };
+
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
@@ -39,7 +48,7 @@ const ContactForm = () => {
           type="text"
           required
           value={formData.name}
-          onChange={(e) => setFormData({...formData, name: e.target.value})}
+          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           className="w-full p-2 rounded bg-matte-black text-pure-white border border-gray-700"
         />
       </div>
@@ -50,7 +59,7 @@ const ContactForm = () => {
           type="email"
           required
           value={formData.email}
-          onChange={(e) => setFormData({...formData, email: e.target.value})}
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           className="w-full p-2 rounded bg-matte-black text-pure-white border border-gray-700"
         />
       </div>
@@ -59,7 +68,7 @@ const ContactForm = () => {
         <label className="block text-sm font-medium mb-2">Service</label>
         <select
           value={formData.service}
-          onChange={(e) => setFormData({...formData, service: e.target.value})}
+          onChange={(e) => setFormData({ ...formData, service: e.target.value })}
           className="w-full p-2 rounded bg-matte-black text-pure-white border border-gray-700"
         >
           <option value="">Select a service</option>
@@ -75,7 +84,7 @@ const ContactForm = () => {
         <textarea
           required
           value={formData.message}
-          onChange={(e) => setFormData({...formData, message: e.target.value})}
+          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
           className="w-full p-2 rounded bg-matte-black text-pure-white border border-gray-700"
           rows={4}
         />
@@ -89,6 +98,14 @@ const ContactForm = () => {
         }`}
       >
         {status === 'sending' ? 'Sending...' : isQuote ? 'Get Quote' : 'Send Message'}
+      </button>
+
+      <button
+        type="button"
+        onClick={handleButtonClick}
+        className={`w-full bg-pure-white text-deep-black py-3 rounded hover:bg-off-white transition-colors mt-2`}
+      >
+        Send Message via Email Client
       </button>
 
       {status === 'success' && (

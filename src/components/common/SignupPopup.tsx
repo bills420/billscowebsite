@@ -37,6 +37,10 @@ const SignupPopup = () => {
     }
   };
 
+  const handleMailtoClick = () => {
+    window.location.href = `mailto:info@billsco.co.nz?subject=New Service Request&body=Name: ${formData.name}%0AEmail: ${formData.email}%0AService: ${formData.service}%0AMessage: ${formData.message}`;
+  };
+
   if (!isVisible) return null;
 
   return (
@@ -109,6 +113,14 @@ const SignupPopup = () => {
             className="w-full button-gradient text-pure-white py-3 rounded-lg hover:opacity-90 transition-opacity"
           >
             Submit Request
+          </button>
+
+          <button
+            type="button"
+            onClick={handleMailtoClick}
+            className="w-full button-gradient text-pure-white py-3 rounded-lg hover:opacity-90 transition-opacity mt-2"
+          >
+            Send via Email Client
           </button>
         </form>
       </div>
